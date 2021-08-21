@@ -1,0 +1,19 @@
+version: '3'
+services:
+  
+
+  postgresdb:
+    image: postgres
+    ports:
+      - 8080:5432
+    environment:
+      - POSTGRES_USER=aditya
+      - POSTGRES_PASSWORD=adityamishra
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    ports:
+      - 5555:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=chetansoni7330@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=aditya

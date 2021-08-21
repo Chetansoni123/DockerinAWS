@@ -1,0 +1,38 @@
+version: '3.9'
+services:
+  app:
+    build: .
+    # image: public.ecr.aws/y7u3c3y9/django_app
+    image: django_application
+    ports:
+      - 8000:8000
+    volumes:
+      - ./app:/app
+    depends_on: 
+      - postgresdb
+    command: sh -c "dockerize -wait tcp://postgresdb:5432 -timeout 300s -wait-retry-interval 30s /app/entrypoint.sh"
+      
+  postgresdb:
+    image : postgres
+
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+    ports:
+      - 8080:5432
+
+    environment:
+      - POSTGRES_USER=chetan
+      - POSTGRES_PASSWORD=chetansoni
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    ports:
+      - 5555:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=chetansoni7330@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=chetansoni
+
+volumes:
+  postgres-data:
+    driver: local

@@ -1,0 +1,130 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"email>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App for Docker</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="flash-message">
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="vertical"></div>
+        <div class="output">
+            <h1>Output : </h1>
+            <h2>{{user.email}}</h2>
+            <h2>{{user.mobile}}</h2>
+        </div>
+        <form action="{% url 'userdata' %}" class="fetch-form" method="GET">
+            {% csrf_token %}
+            <h1>Fetch User Data</h1>
+            <div class="form-group">
+                <label>Name : </label>
+                <input type="text" name="username"> 
+            </div>
+            <input class="button" type="submit" value="submit">
+        </form>
+        <hr>
+        <form action="{% url 'home' %}"class="post-form" method="POST">
+            {% csrf_token %}
+            <h1>Post User Data</h1>
+            <div class="form-group">
+                <label>UserName : </label>
+                <input type="text" name="username"> 
+            </div>
+            <div class="form-group">
+                <label>Email : </label>
+                <input type="text" name="email"> 
+            </div>
+            <div class="form-group">
+                <label>Mobile : </label>
+                <input type="text" name="mobile"> 
+            </div>
+            <input class="button" type="submit" value="submit">
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div id="fetchData">
+        <div id="result">
+            <h3>Username: {{user.username}}</h3>
+            <h3>Email : {{user.email}}</h3>
+        </div>
+        <div id="fetchForm">
+            <div id="fetchHeading">
+                <h2> Fetch User Data :</h2>
+            </div>
+
+            <form method="post" action="userdata/">
+                {% csrf_token %}
+            <div id="FetchName">
+                <h4> Enter Username : </h4>
+                <input type="text" placeholder="username" name="inputUser">
+            </div>
+            <div id="fetchButton">
+                <input id="border" type="submit" value="submit">
+            </div>
+            </form>
+        </div>
+        
+    </div>
+
+    
+    <div id="postData">
+        <div id="postForm">
+            <form method="post" action="/">
+                {% csrf_token %}
+                <div id="postHeading">
+                    <h2> Post User Data : </h2>
+                </div>
+                <div id="emails">
+                    <h4> Enter username : </h4>
+                    <input type="text" placeholder="Enter your name" name="username">
+                </div>
+                <div id="emails">
+                    <h4> Enter email : </h4>
+                        <input type="email" placeholder="Enter your email" name="email">
+                </div>
+                <div id="postButton">
+                    <input id="border" type="submit" value="submit">
+                </div>
+            </form>
+        </div>
+    </div> -->
+</body>
+</html>
